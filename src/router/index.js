@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomePage.vue'
 import AdminView from '../views/AdminView.vue'
+import LoginForm from '../components/LoginForm.vue' // Importa el nuevo componente
 
 const routes = [
   {
@@ -12,6 +13,11 @@ const routes = [
     path: '/admin',
     name: 'admin',
     component: AdminView
+  },
+  {
+    path: '/login', // Nueva ruta para el formulario de inicio de sesión
+    name: 'login',
+    component: LoginForm
   }
 ]
 
