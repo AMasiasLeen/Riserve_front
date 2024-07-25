@@ -1,7 +1,9 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomePage.vue'
 import AdminView from '../views/AdminView.vue'
-import LoginForm from '../components/LoginForm.vue' // Importa el nuevo componente
+import LoginForm from '../components/LoginForm.vue'
+import BusinessesView from '../views/BusinessesView.vue'
+import MenusView from '../views/MenusView.vue'
 
 const routes = [
   {
@@ -12,10 +14,22 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: AdminView
+    component: AdminView,
+    children: [
+      {
+        path: 'businesses',
+        name: 'businesses',
+        component: BusinessesView
+      },
+      {
+        path: 'menus/:businessName',
+        name: 'menus',
+        component: MenusView
+      }
+    ]
   },
   {
-    path: '/login', // Nueva ruta para el formulario de inicio de sesión
+    path: '/login',
     name: 'login',
     component: LoginForm
   }
