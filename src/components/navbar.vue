@@ -1,7 +1,7 @@
 <!-- src/components/navbar.vue -->
 <template>
-  <nav class="navbar">
-    <div class="navbar-brand">RESTAURANTMG</div>
+  <nav class="navbar" v-if="!isAdminRoute && !isLoginRoute">
+    <div class="navbar-brand" @click="goHome">RESTAURANTMG</div>
     <div class="navbar-menu">
       <div v-if="!isAuthenticated" @click="login" class="navbar-item">Iniciar Sesión</div>
       <div v-else class="navbar-item dropdown">
@@ -18,10 +18,11 @@
 
 <script setup>
 import { ref } from 'vue';
-import { useRouter } from 'vue-router';
+import { useRouter, useRoute } from 'vue-router';
 import { useAuth } from '../auth';
 
 const router = useRouter();
+const route = useRoute();
 const { isAuthenticated, user, logout } = useAuth();
 const dropdownOpen = ref(false);
 
@@ -36,6 +37,19 @@ function login() {
 function goToAdmin() {
   router.push('/admin');
 }
+
+function goHome() {
+  router.push('/');
+}
+
+// Ocultar navbar en rutas de administración y de inicio de sesión
+const isAdminRoute = ref(route.path.startsWith('/admin'));
+const isLoginRoute = ref(route.path === '/login');
+
+router.afterEach((to) => {
+  isAdminRoute.value = to.path.startsWith('/admin');
+  isLoginRoute.value = to.path === '/login';
+});
 </script>
 
 <style scoped>
@@ -50,6 +64,7 @@ function goToAdmin() {
 .navbar-brand {
   font-size: 1.5rem;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .navbar-menu {

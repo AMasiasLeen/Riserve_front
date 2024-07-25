@@ -1,11 +1,17 @@
+<!-- src/App.vue -->
 <script setup>
-import { RouterView } from 'vue-router'
+import { useRoute } from 'vue-router'
 import Navbar from './components/navbar.vue'
+
+const route = useRoute();
 </script>
 
 <template>
-  <Navbar />
-  <RouterView />
+  <div>
+    <!-- Mostrar Navbar solo si la ruta no es '/login' ni '/admin' -->
+    <Navbar v-if="route.path !== '/login' && !route.path.startsWith('/admin')" />
+    <router-view />
+  </div>
 </template>
 
 <style scoped>
