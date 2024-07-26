@@ -1,81 +1,58 @@
-<!-- src/views/MenusView.vue -->
+<!-- src/views/MenuView.vue -->
 <template>
-  <div class="menus-view">
-    <h2>Menús de {{ businessName }}</h2>
-    <div class="card-container">
-      <div v-for="(menu, index) in menus" :key="index" class="card">
-        <img :src="menu.image" alt="menu.name" />
-        <div class="card-content">
-          <h3>{{ menu.name }}</h3>
-          <p>{{ menu.description }}</p>
-        </div>
-      </div>
-    </div>
+  <div class="menu-container">
+    <h1>Menú de {{ businessName }}</h1>
+    <ul>
+      <li v-for="(item, index) in menuItems" :key="index">
+        {{ item.name }} - {{ item.price }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
 import { useRoute } from 'vue-router';
 
 const route = useRoute();
-const businessName = ref(route.params.businessName);
+const businessName = route.params.businessName;
+const menuItems = ref([]);
 
-const menus = [
-  {
-    name: 'Menú 1',
-    description: 'Descripción del menú 1',
-    image: '/path_to_image4.jpg'
-  },
-  {
-    name: 'Menú 2',
-    description: 'Descripción del menú 2',
-    image: '/path_to_image5.jpg'
-  },
-  {
-    name: 'Menú 3',
-    description: 'Descripción del menú 3',
-    image: '/path_to_image6.jpg'
+onMounted(() => {
+  // Simula la carga de elementos del menú desde una API o una base de datos
+  if (businessName === 'Negocio 1') {
+    menuItems.value = [
+      { name: 'Producto 1', price: '$10' },
+      { name: 'Producto 2', price: '$15' },
+    ];
+  } else if (businessName === 'Negocio 2') {
+    menuItems.value = [
+      { name: 'Producto 3', price: '$20' },
+      { name: 'Producto 4', price: '$25' },
+    ];
+  } else if (businessName === 'Negocio 3') {
+    menuItems.value = [
+      { name: 'Producto 5', price: '$30' },
+      { name: 'Producto 6', price: '$35' },
+    ];
   }
-];
+});
 </script>
 
 <style scoped>
-.menus-view {
+.menu-container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 2rem;
+  text-align: center;
 }
 
-.card-container {
-  display: flex;
-  gap: 1rem;
+.menu-container ul {
+  list-style-type: none;
+  padding: 0;
 }
 
-.card {
-  background: white;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  transition: transform 0.2s ease-in-out;
-}
-
-.card:hover {
-  transform: scale(1.05);
-}
-
-.card img {
-  width: 100%;
-  height: auto;
-}
-
-.card-content {
-  padding: 1rem;
-}
-
-.card h3 {
-  margin: 0 0 0.5rem 0;
-}
-
-.card p {
-  margin: 0;
+.menu-container li {
+  padding: 0.5rem 0;
 }
 </style>

@@ -3,7 +3,8 @@ import HomeView from '../views/HomePage.vue'
 import AdminView from '../views/AdminView.vue'
 import LoginForm from '../components/LoginForm.vue'
 import BusinessesView from '../views/BusinessesView.vue'
-import MenusView from '../views/MenusView.vue'
+import MenuView from '../views/MenusView.vue'
+import BusinessDetail from '../views/BusinessDetail.vue' // Importa el nuevo componente
 
 const routes = [
   {
@@ -23,8 +24,8 @@ const routes = [
       },
       {
         path: 'menus/:businessName',
-        name: 'menus',
-        component: MenusView
+        name: 'menu',
+        component: MenuView
       }
     ]
   },
@@ -32,6 +33,12 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginForm
+  },
+  {
+    path: '/business/:id', // Nueva ruta para la vista detallada del negocio
+    name: 'BusinessDetail',
+    component: BusinessDetail,
+    props: true
   }
 ]
 
