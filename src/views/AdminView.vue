@@ -7,7 +7,7 @@
         <h1>restaurantmg</h1>
       </div>
       <ul class="sidebar-menu">
-        <li class="sidebar-item">
+        <li class="sidebar-item" @click="goToBusinesses">
           <i class="icon">📁</i>
           <span>NEGOCIOS</span>
         </li>
@@ -60,6 +60,10 @@ function goHome() {
 function handleLogout() {
   logout();
   router.push('/');
+}
+
+function goToBusinesses() {
+  router.push('/admin/businesses');
 }
 </script>
 
