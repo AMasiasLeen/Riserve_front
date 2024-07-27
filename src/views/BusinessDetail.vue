@@ -3,6 +3,7 @@
     <img :src="business.image" alt="business.name" />
     <h1>{{ business.name }}</h1>
     <p>{{ business.description }}</p>
+    <button @click="goToReservation">Reservar</button>
     <section>
       <h2>Menús/Productos</h2>
       <swiper :slides-per-view="3" space-between="20" class="mySwiper">
@@ -21,19 +22,22 @@
 </template>
 
 <script setup>
-import { useRoute } from 'vue-router';
 import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
 
-// Simulamos la información del negocio y menús
 const business = ref({});
 const menus = ref([]);
 
 const route = useRoute();
+const router = useRouter();
+
+const goToReservation = () => {
+  router.push({ name: 'reservation', params: { businessId: route.params.id } });
+};
 
 onMounted(() => {
-  // Aquí deberías hacer una llamada API para obtener los detalles del negocio
   const businessId = route.params.id;
   // Simulación de datos
   business.value = {
@@ -49,7 +53,7 @@ onMounted(() => {
     },
     {
       name: 'Menú Ejemplo 2',
-      description: 'Descripción del menú 2',
+      description: 'TUVIEJA',
       image: 'path_to_menu_image2.jpg'
     }
   ];
@@ -66,6 +70,20 @@ onMounted(() => {
 .business-detail img {
   width: 100%;
   height: auto;
+}
+
+button {
+  margin: 1rem 0;
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
 
 .card {

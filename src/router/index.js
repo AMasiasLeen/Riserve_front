@@ -4,7 +4,8 @@ import AdminView from '../views/AdminView.vue'
 import LoginForm from '../components/LoginForm.vue'
 import BusinessesView from '../views/BusinessesView.vue'
 import MenuView from '../views/MenusView.vue'
-import BusinessDetail from '../views/BusinessDetail.vue' // Importa el nuevo componente
+import BusinessDetail from '../views/BusinessDetail.vue'
+import ReservationForm from '../views/ReservationForm.vue'
 
 const routes = [
   {
@@ -15,19 +16,7 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: AdminView,
-    children: [
-      {
-        path: 'businesses',
-        name: 'businesses',
-        component: BusinessesView
-      },
-      {
-        path: 'menus/:businessName',
-        name: 'menu',
-        component: MenuView
-      }
-    ]
+    component: AdminView
   },
   {
     path: '/login',
@@ -35,10 +24,24 @@ const routes = [
     component: LoginForm
   },
   {
-    path: '/business/:id', // Nueva ruta para la vista detallada del negocio
-    name: 'BusinessDetail',
-    component: BusinessDetail,
-    props: true
+    path: '/negocios',
+    name: 'businesses',
+    component: BusinessesView
+  },
+  {
+    path: '/menus',
+    name: 'menus',
+    component: MenuView
+  },
+  {
+    path: '/business/:id',
+    name: 'business-detail',
+    component: BusinessDetail
+  },
+  {
+    path: '/business/:businessId/reservation',
+    name: 'reservation',
+    component: ReservationForm
   }
 ]
 
