@@ -26,16 +26,11 @@ const password = ref('');
 const router = useRouter();
 const { login } = useAuth();
 
-function submitForm() {
+async function submitForm() {
   // Aquí puedes agregar la lógica de autenticación
   // Por ejemplo, podrías llamar a una API para validar las credenciales
-  if (username.value === 'admin' && password.value === 'admin') {
-    alert('Inicio de sesión exitoso');
-    login(username.value);
-    router.push('/admin'); // Redirige a la vista de administración
-  } else {
-    alert('Credenciales incorrectas');
-  }
+    const res = await login(username.value,password.value);
+    if(res)   router.push('/admin'); // Redirige a la vista de administración
 }
 </script>
 

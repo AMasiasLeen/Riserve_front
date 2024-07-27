@@ -4,7 +4,7 @@
     <section>
       <swiper :slides-per-view="3" space-between="20" class="mySwiper">
         <swiper-slide v-for="(business, index) in businesses" :key="index">
-          <router-link :to="{ name: 'business-detail', params: { id: business.id } }">
+          <router-link :to="{ name: 'business-detail', params: { id: business.businessID } }">
             <div class="card">
               <img :src="business.image" alt="business.name" />
               <div class="card-content">
@@ -20,29 +20,39 @@
 </template>
 
 <script setup>
+
 import { ref, onMounted } from 'vue';
 import { Swiper, SwiperSlide } from 'swiper/vue';
 import 'swiper/swiper-bundle.css';
+import axios from "axios";
 
 const businesses = ref([]);
 
 onMounted(() => {
   // Simulación de datos
   businesses.value = [
-    {
-      id: 1,
-      name: 'SUBWAY',
-      description: 'LOS MEJORES SANGUCHITOS DE LATINOAMERICA',
-      image: 'https://cnnespanol.cnn.com/wp-content/uploads/2023/07/image-244.png?w=940&h=530&crop=1'
-    },
-    {
-      id: 2,
-      name: 'Otro negocio',
-      description: 'Descripción del otro negocio',
-      image: 'https://example.com/image2.jpg'
-    }
   ];
 });
+
+async function addbusinesses() {
+
+const options = {
+  method: 'GET',
+  url: 'http://localhost:3000/api/v1/businesses',
+  headers: {
+    Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MTIzNDY1NDc4OSwidXNlcl9uYW1lIjoiQ2FybGl0b3MiLCJ1c2VyX21haWwiOiJjb3JyZW9AZWplbXBsby5jb20iLCJ1c2VyX3BsYW4iOiJGcmVlbWl1bSIsImlhdCI6MTcyMjEwMTAwMSwiZXhwIjoxNzIyMTA0NjAxfQ.snapOvq4ofKVZuILZF9rED1vv49fZsHRC9sFQ2C9Ivc'
+  }
+};
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+    businesses.value=response.data.result
+  }).catch(function (error) {
+    console.error(error);
+  });
+}
+
+addbusinesses()
+
 </script>
 
 <style scoped>
