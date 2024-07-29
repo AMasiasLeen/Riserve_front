@@ -23,12 +23,10 @@
         <li class="sidebar-item">
           <i class="icon">👤</i>
           <span>Mi Perfil</span>
-          <span class="detail">Detail</span>
         </li>
         <li class="sidebar-item">
           <i class="icon">⚙️</i>
           <span>Opciones</span>
-          <span class="detail">Detail</span>
         </li>
         <li class="sidebar-item" @click="handleLogout">
           <i class="icon">🚪</i>

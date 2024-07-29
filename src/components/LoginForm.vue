@@ -1,4 +1,3 @@
-<!-- src/components/LoginForm.vue -->
 <template>
   <div class="login-form">
     <h2>Inicio de Sesión</h2>
@@ -13,6 +12,8 @@
       </div>
       <button type="submit">Iniciar Sesión</button>
     </form>
+    <button @click="goToRegister">Registrarse</button>
+    <button @click="goBack">Atrás</button>
   </div>
 </template>
 
@@ -27,10 +28,16 @@ const router = useRouter();
 const { login } = useAuth();
 
 async function submitForm() {
-  // Aquí puedes agregar la lógica de autenticación
-  // Por ejemplo, podrías llamar a una API para validar las credenciales
-    const res = await login(username.value,password.value);
-    if(res)   router.push('/admin'); // Redirige a la vista de administración
+  const res = await login(username.value, password.value);
+  if (res) router.push('/admin');
+}
+
+function goToRegister() {
+  router.push('/register');
+}
+
+function goBack() {
+  router.back();
 }
 </script>
 
@@ -72,6 +79,7 @@ async function submitForm() {
   color: white;
   cursor: pointer;
   border-radius: 5px;
+  margin-bottom: 0.5rem;
 }
 
 .login-form button:hover {

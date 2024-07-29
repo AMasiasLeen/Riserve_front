@@ -1,11 +1,13 @@
-import { createRouter, createWebHistory } from 'vue-router'
-import HomeView from '../views/HomePage.vue'
-import AdminView from '../views/AdminView.vue'
-import LoginForm from '../components/LoginForm.vue'
-import BusinessesView from '../views/BusinessesView.vue'
-import MenuView from '../views/MenusView.vue'
-import BusinessDetail from '../views/BusinessDetail.vue'
-import ReservationForm from '../views/ReservationForm.vue'
+import { createRouter, createWebHistory } from 'vue-router';
+import HomeView from '../views/HomePage.vue';
+import AdminView from '../views/AdminView.vue';
+import LoginForm from '../components/LoginForm.vue';
+import RegisterForm from '../components/RegisterForm.vue';
+import BusinessesView from '../views/BusinessesView.vue';
+import MenuView from '../views/MenusView.vue';
+import BusinessDetail from '../views/BusinessDetail.vue';
+import ReservationForm from '../views/ReservationForm.vue';
+import ReservationDetail from '../views/ReservationDetail.vue';
 
 const routes = [
   {
@@ -22,6 +24,11 @@ const routes = [
     path: '/login',
     name: 'login',
     component: LoginForm
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: RegisterForm
   },
   {
     path: '/negocios',
@@ -42,12 +49,17 @@ const routes = [
     path: '/business/:businessId/reservation',
     name: 'reservation',
     component: ReservationForm
+  },
+  {
+    path: '/reservation/:reservationId',
+    name: 'reservation-detail',
+    component: ReservationDetail
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
