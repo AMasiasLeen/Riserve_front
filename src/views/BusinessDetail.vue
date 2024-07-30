@@ -54,7 +54,7 @@ onMounted(() => {
     },
     {
       name: 'Menú Ejemplo 2',
-      description: 'TUVIEJA',
+      description: 'SANDWICH',
       image: 'path_to_menu_image2.jpg'
     }
   ];
