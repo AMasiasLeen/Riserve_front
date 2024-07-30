@@ -3,7 +3,9 @@
   <div class="admin-container">
     <aside class="sidebar">
       <div class="sidebar-brand" @click="goHome">
-        <img src="https://cdn.prod.website-files.com/6423e8cf97045d0ac6e9ffb9/6565d9491a89f4b7b7915b3e_tipos%20de%20restaurante.jpg" alt="Logo">
+        <img
+          src="https://cdn.prod.website-files.com/6423e8cf97045d0ac6e9ffb9/6565d9491a89f4b7b7915b3e_tipos%20de%20restaurante.jpg"
+          alt="Logo">
         <h1>restaurantmg</h1>
       </div>
       <ul class="sidebar-menu">
@@ -48,7 +50,7 @@
       <div class="admin-header">
         <h1>Administración</h1>
       </div>
-      <router-view></router-view>
+      <router-view></router-view> <!-- Renderiza las rutas secundarias -->
     </main>
   </div>
 </template>
@@ -70,7 +72,7 @@ function handleLogout() {
 }
 
 function goToBusinesses() {
-  router.push('/admin/businesses');
+  router.push('/admin/businesses'); // Asegúrate de que la ruta sea correcta
 }
 </script>
 

@@ -18,7 +18,20 @@ const routes = [
   {
     path: '/admin',
     name: 'admin',
-    component: AdminView
+    component: AdminView,
+    children: [
+      {
+        path: 'businesses',
+        name: 'admin-businesses',
+        component: BusinessesView
+      },
+      {
+        path: 'menus',
+        name: 'admin-menus',
+        component: MenuView
+      },
+      // Agrega otras rutas secundarias del panel de administración aquí
+    ]
   },
   {
     path: '/login',
@@ -29,16 +42,6 @@ const routes = [
     path: '/register',
     name: 'register',
     component: RegisterForm
-  },
-  {
-    path: '/negocios',
-    name: 'businesses',
-    component: BusinessesView
-  },
-  {
-    path: '/menus',
-    name: 'menus',
-    component: MenuView
   },
   {
     path: '/business/:id',

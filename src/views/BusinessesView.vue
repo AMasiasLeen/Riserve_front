@@ -1,13 +1,8 @@
 <!-- src/views/BusinessesView.vue -->
 <template>
   <div class="businesses-container">
-    <div
-      v-for="(business, index) in businesses"
-      :key="index"
-      class="business-card"
-      @click="goToMenus(business.name)"
-    >
-      <img :src="business.mainPicUrl" :alt="business.name" class="business-image" />
+    <div v-for="(business, index) in businesses" :key="index" class="business-card" @click="goToMenus(business.name)">
+      <img :src="business.image" :alt="business.name" class="business-image" />
       <div class="business-info">
         <h3>{{ business.name }}</h3>
         <p>{{ business.description }}</p>
@@ -26,7 +21,7 @@ const businesses = ref([
   {
     name: 'AMERICAN DELI',
     description: 'LOS MEJORES PLATOS PARA DESAYUNAR Y ALMORZAR',
-    mainPicUrl: 'https://tb-static.uber.com/prod/image-proc/processed_images/02b67413ff086e0dc5cd6ca899cb62aa/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg'
+    image: 'https://tb-static.uber.com/prod/image-proc/processed_images/02b67413ff086e0dc5cd6ca899cb62aa/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg'
   },
   {
     name: 'POLLO FELIZ',
@@ -51,13 +46,17 @@ function goToMenus(businessName) {
   flex-wrap: wrap;
   gap: 16px;
   justify-content: center;
-  max-width: 1200px; /* Ancho máximo del contenedor */
-  margin: 0 auto; /* Centrar el contenedor */
-  padding: 2rem; /* Espaciado alrededor del contenedor */
+  max-width: 1200px;
+  /* Ancho máximo del contenedor */
+  margin: 0 auto;
+  /* Centrar el contenedor */
+  padding: 2rem;
+  /* Espaciado alrededor del contenedor */
 }
 
 .business-card {
-  width: 250px; /* Ancho fijo de las tarjetas */
+  width: 250px;
+  /* Ancho fijo de las tarjetas */
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
