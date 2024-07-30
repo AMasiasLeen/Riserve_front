@@ -7,7 +7,7 @@
       class="business-card"
       @click="goToMenus(business.name)"
     >
-      <img :src="business.image" :alt="business.name" class="business-image" />
+      <img :src="business.mainPicUrl" :alt="business.name" class="business-image" />
       <div class="business-info">
         <h3>{{ business.name }}</h3>
         <p>{{ business.description }}</p>
@@ -26,7 +26,7 @@ const businesses = ref([
   {
     name: 'AMERICAN DELI',
     description: 'LOS MEJORES PLATOS PARA DESAYUNAR Y ALMORZAR',
-    image: 'https://tb-static.uber.com/prod/image-proc/processed_images/02b67413ff086e0dc5cd6ca899cb62aa/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg'
+    mainPicUrl: 'https://tb-static.uber.com/prod/image-proc/processed_images/02b67413ff086e0dc5cd6ca899cb62aa/3ac2b39ad528f8c8c5dc77c59abb683d.jpeg'
   },
   {
     name: 'POLLO FELIZ',
